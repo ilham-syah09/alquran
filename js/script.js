@@ -22,6 +22,7 @@ $.getJSON("https://api-alquranid.herokuapp.com/surah", function (result) {
             `">
                       </audio>
                     </div>
+                    <a src="" class="card-link see-detail" data-bs-toggle="modal" data-id="`+ result.nomor +`" data-bs-target="#exampleModal">see detail</a>
                   </div>
                 </div>
               </div>
@@ -80,6 +81,32 @@ $('#search-button').on('click', function () {
 $('.nav-link').on('click', function () {
     $('.nav-link').removeClass('active');
     $(this).addClass('active');
+})
+
+$('#list-surah').on('click', '.see-detail', function () {
+var id = $(this).data('id');
+  $.ajax({
+    type: "GET",
+    url: "https://api-alquranid.herokuapp.com/surah/" + id,
+    dataType: "json",
+    success: function (result) {
+      if (result.status === "success") {
+        $('.modal-body').html(`
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md">
+            <h4 class="text-dark text-end">` + result.id + `</h4>
+            </div>
+          </div>
+        </div>
+        `);
+        console.log($(this).data('id'));
+        console.log('data ada')
+      } else {
+        console.log('data tidak ada')
+      }
+    }
+  });
 })
 
 // https://api-alquranid.herokuapp.com/surah/search/
