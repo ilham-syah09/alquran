@@ -22,7 +22,6 @@ $.getJSON("https://api-alquranid.herokuapp.com/surah", function (result) {
             `">
                       </audio>
                     </div>
-                    <a src="" class="card-link see-detail" data-bs-toggle="modal" data-id="`+ result.nomor +`" data-bs-target="#exampleModal">see detail</a>
                   </div>
                 </div>
               </div>
